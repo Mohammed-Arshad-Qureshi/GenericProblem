@@ -4,24 +4,30 @@ namespace Generics
 {
     class Program
     {
-        public static void toPrint<T>(T[] inputArray)
+        #region Maxium integer value
+        public static int MaximumCheck(int firstValue, int secondValue, int thirdValue)
         {
-            foreach (var element in inputArray)
+            if (firstValue.CompareTo(secondValue) > 0 && firstValue.CompareTo(thirdValue) > 0)
             {
-                Console.WriteLine(element);
+                return firstValue;
             }
-            Console.WriteLine("___________________________\n");
+            if (secondValue.CompareTo(firstValue) > 0 && secondValue.CompareTo(thirdValue) > 0)
+            {
+                return secondValue;
+            }
+            if (thirdValue.CompareTo(firstValue) > 0 && thirdValue.CompareTo(secondValue) > 0)
+            {
+                return thirdValue;
+            }
+            return firstValue;
         }
-       
+        #endregion
+
         static void Main(string[] args)
         {
-            int[] intArray = { 1, 2, 3, 4, 5 };
-            double[] doubleArray = { 1.1, 1.2, 1.3, 1.4, 4.5 };
-            string[] stringArray = { "H", "E", "L", "l", "O" };
-            Program.toPrint<int>(intArray);
-            Program.toPrint<double>(doubleArray);
-            Program.toPrint<string>(stringArray);
-            Console.ReadLine();
+            string maxValue = Program.MaximumCheck(3, 2, 3).ToString();
+            Console.WriteLine("The maximum of Three numbers :  " + maxValue);
+            Console.ReadLine(); 
         }
     }
 }
