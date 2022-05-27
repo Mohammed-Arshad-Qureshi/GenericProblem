@@ -4,47 +4,32 @@ namespace Generics
 {
     public class GenericMax<T> where T : IComparable
     {
-        T firstValue;
-        T secondValue;
-        T thirdValue;
-        public GenericMax(T firstValue, T secondValue,T thirdValue)
+        public T[] value;
+        public GenericMax(T[] value)
         {
-            this.firstValue = firstValue;
-            this.secondValue = secondValue;
-            this.thirdValue = thirdValue;
+            this.value = value;
 
         }
-        #region Any type of number Maximum
-        public static T MaximumAnyNumber(T firstValue, T secondValue, T thirdValue)
+        public T[] Sort(T[] values)
         {
-            if ((firstValue.CompareTo(secondValue) > 0 && firstValue.CompareTo(thirdValue) > 0) ||
-               (firstValue.CompareTo(secondValue) >= 0 && firstValue.CompareTo(thirdValue) > 0) ||
-               (firstValue.CompareTo(secondValue) > 0 && firstValue.CompareTo(thirdValue) >= 0))
-            {
-                return firstValue;
-            }
-            if ((secondValue.CompareTo(firstValue) > 0 && secondValue.CompareTo(thirdValue) > 0) ||
-                (secondValue).CompareTo(firstValue) >= 0 && (secondValue.CompareTo(thirdValue) > 0) ||
-                (secondValue).CompareTo(firstValue) > 0 && (secondValue.CompareTo(thirdValue) >= 0))
-            {
-                return secondValue;
-            }
-            if ((thirdValue.CompareTo(firstValue) > 0 && thirdValue.CompareTo(secondValue) > 0) ||
-                (thirdValue.CompareTo(firstValue) >= 0 && thirdValue.CompareTo(secondValue) > 0) ||
-                    (thirdValue.CompareTo(firstValue) > 0 && thirdValue.CompareTo(secondValue) >= 0))
-            {
-                return thirdValue;
-            }
-            return firstValue;
+            Array.Sort(values);
+            return values;
         }
-        
+        public T MaxValues(params T[] values)
+        {
+            var sorted_values = Sort(values);
+            return sorted_values[^1];
+        }
         public T MaxMethod()
         {
-            T max = GenericMax<T>.MaximumAnyNumber(firstValue, secondValue, thirdValue);
+            var max = MaxValues(this.value);
             return max;
         }
-        #endregion
+        public void printMaxValue()
+        {
+            var max = MaxValues(this.value);
+            Console.WriteLine("Maximum Value is:  " + max);
+        }
 
-      
     }
 }
