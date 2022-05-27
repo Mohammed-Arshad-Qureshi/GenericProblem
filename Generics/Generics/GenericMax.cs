@@ -4,8 +4,18 @@ namespace Generics
 {
     public class GenericMax<T> where T : IComparable
     {
+        T firstValue;
+        T secondValue;
+        T thirdValue;
+        public GenericMax(T firstValue, T secondValue,T thirdValue)
+        {
+            this.firstValue = firstValue;
+            this.secondValue = secondValue;
+            this.thirdValue = thirdValue;
+
+        }
         #region Any type of number Maximum
-        public T MaximumAnyNumber(T firstValue, T secondValue, T thirdValue)
+        public static T MaximumAnyNumber(T firstValue, T secondValue, T thirdValue)
         {
             if ((firstValue.CompareTo(secondValue) > 0 && firstValue.CompareTo(thirdValue) > 0) ||
                (firstValue.CompareTo(secondValue) >= 0 && firstValue.CompareTo(thirdValue) > 0) ||
@@ -26,6 +36,12 @@ namespace Generics
                 return thirdValue;
             }
             return firstValue;
+        }
+        
+        public T MaxMethod()
+        {
+            T max = GenericMax<T>.MaximumAnyNumber(firstValue, secondValue, thirdValue);
+            return max;
         }
         #endregion
 
